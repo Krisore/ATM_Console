@@ -1,13 +1,17 @@
 ﻿namespace ATM_Software
 {
-    internal class Card
+    internal class Card : BankAccount
     {
-        protected string _CardType { get; set; } = String.Empty;
-        protected string _CardNumber { get; set; } = String.Empty;
+        protected string _CardType { get; set; }
+        protected string _CardNumber { get; set; }
         protected long _Pin { get; set; }
+        public void ToBank()
+        {
 
+            BankOwner(_CardType, _CardNumber.Trim(), _Pin);
+
+        }
     }
-
     internal class ManageCard : Card
     {
         public bool CheckCard(string cardNumber)
@@ -57,9 +61,10 @@
         }
         public long DoCheckSum(string cardNumber)
         {
+            string card = cardNumber.Trim();
             long sum = 0;
             long digit;
-            long number = long.Parse(cardNumber);
+            long number = long.Parse(card);
             for (int i = 0; number != 0; number /= 10)
             {
                 if (i % 2 == 0)
@@ -74,9 +79,14 @@
             }
             return sum % 10;
         }
-        public bool DoCheckPin(long pin)
+        public bool DoCheckPin(string pin)
         {
-            return false;
+            if (pin.Length != 4)
+            {
+                return false;
+            }
+            _Pin = long.Parse(pin);
+            return true;
         }
 
     }
