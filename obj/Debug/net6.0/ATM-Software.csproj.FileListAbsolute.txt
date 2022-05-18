@@ -1,0 +1,15 @@
+C:\Users\kriso\source\repos\Development\ConsoleProject\Simple-ATM-Software\ATM-Software\bin\Debug\net6.0\ATM-Software.exe
+C:\Users\kriso\source\repos\Development\ConsoleProject\Simple-ATM-Software\ATM-Software\bin\Debug\net6.0\ATM-Software.deps.json
+C:\Users\kriso\source\repos\Development\ConsoleProject\Simple-ATM-Software\ATM-Software\bin\Debug\net6.0\ATM-Software.runtimeconfig.json
+C:\Users\kriso\source\repos\Development\ConsoleProject\Simple-ATM-Software\ATM-Software\bin\Debug\net6.0\ATM-Software.dll
+C:\Users\kriso\source\repos\Development\ConsoleProject\Simple-ATM-Software\ATM-Software\bin\Debug\net6.0\ATM-Software.pdb
+C:\Users\kriso\source\repos\Development\ConsoleProject\Simple-ATM-Software\ATM-Software\obj\Debug\net6.0\ATM-Software.csproj.AssemblyReference.cache
+C:\Users\kriso\source\repos\Development\ConsoleProject\Simple-ATM-Software\ATM-Software\obj\Debug\net6.0\ATM-Software.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\kriso\source\repos\Development\ConsoleProject\Simple-ATM-Software\ATM-Software\obj\Debug\net6.0\ATM-Software.AssemblyInfoInputs.cache
+C:\Users\kriso\source\repos\Development\ConsoleProject\Simple-ATM-Software\ATM-Software\obj\Debug\net6.0\ATM-Software.AssemblyInfo.cs
+C:\Users\kriso\source\repos\Development\ConsoleProject\Simple-ATM-Software\ATM-Software\obj\Debug\net6.0\ATM-Software.csproj.CoreCompileInputs.cache
+C:\Users\kriso\source\repos\Development\ConsoleProject\Simple-ATM-Software\ATM-Software\obj\Debug\net6.0\ATM-Software.dll
+C:\Users\kriso\source\repos\Development\ConsoleProject\Simple-ATM-Software\ATM-Software\obj\Debug\net6.0\refint\ATM-Software.dll
+C:\Users\kriso\source\repos\Development\ConsoleProject\Simple-ATM-Software\ATM-Software\obj\Debug\net6.0\ATM-Software.pdb
+C:\Users\kriso\source\repos\Development\ConsoleProject\Simple-ATM-Software\ATM-Software\obj\Debug\net6.0\ATM-Software.genruntimeconfig.cache
+C:\Users\kriso\source\repos\Development\ConsoleProject\Simple-ATM-Software\ATM-Software\obj\Debug\net6.0\ref\ATM-Software.dll
