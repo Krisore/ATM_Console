@@ -33,7 +33,7 @@ namespace ATM_Software
             _Pin = pin;
             _Deposit = _Deposit;
             Owners.Add(new BankAccount(_CardType, _CardNumber, _Pin));
-            Console.WriteLine($" Card Number: [{_CardNumber}]\n Card Account: [{_CardType}]\n Card Pin: [{_Pin}]\n" + $"Deposing: ${_Deposit}");
+            Console.WriteLine($" Card Number: [{_CardNumber}]\n Card Account: [{_CardType}]\n Card Pin: [{_Pin}]\n" + $" Balance: ${_Deposit}");
         }
     }
 
@@ -51,7 +51,7 @@ class ManageBank : BankAccount
 
         decimal deposit = Convert.ToDecimal(amount) + Convert.ToDecimal(_Deposit);
         _Deposit = deposit.ToString();
-        Console.WriteLine($"$[UPDATE:]---{ DateTime.Now}");
+        Console.WriteLine($"$[UPDATE:]---{DateTime.Now}");
         Console.WriteLine($"Balance: ${_Deposit}");
         return true;
     }
@@ -64,7 +64,7 @@ class ManageBank : BankAccount
         }
         decimal withdraw = Convert.ToDecimal(_Deposit) - Convert.ToDecimal(amount);
         _Deposit = withdraw.ToString();
-        Console.WriteLine($"$[UPDATE:]---{ DateTime.Now}");
+        Console.WriteLine($"$[UPDATE:]---{DateTime.Now}");
         Console.WriteLine($"Balance: ${_Deposit}");
         return withdraw <= 1000;
 

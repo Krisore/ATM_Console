@@ -1,96 +1,67 @@
 ﻿using ATM_Software;
+using static System.Console;
 
-Console.WriteLine("\tSimple ATM Software\n" +
-                  "(#1) key to inter your card-number\n" +
-                  "(any) key to Exterminate the Operation");
-Console.Write("Enter Input: ");
+ManageCard manage = new ManageCard();
+ManageBank manageBank = new ManageBank();
+Write("Enter Card Number: ");
+string userCardNumber = ReadLine() ?? throw new Exception("Card Number can't be Null!");
+Write("Enter Card Pin: ");
+string userPinNumber = ReadLine() ?? throw new Exception("Card Pin can't be Null!");
 
-string? input = Console.ReadLine();
-
-Console.WriteLine(input);
-if (input == "1")
+WriteLine("Checking Credentials....");
+Thread.Sleep(3000);
+if (DoChecking(userCardNumber, userPinNumber))
 {
-    Console.WriteLine("#(1) key have been press \n" +
-                      "*** Operation Loading ***\n");
-
-    ManageCard card = new ManageCard();
-    ManageBank manageBank = new ManageBank();
-    Users user;
-    Console.Write("*** Insert your Credit / Debit Card ***\n" +
-                  "\n Enter Card Number: ");
-    string userCardNumber = Console.ReadLine() ?? throw new Exception("Card Number Cannot be null!");
-    if (userCardNumber.Equals(null))
-    {
-        Console.WriteLine("#(INVALID) key have been press\n" +
-                          "*** Operation Exterminated ***");
-        Environment.Exit(0);
-    }
-
-    bool validation = card.CheckCard(userCardNumber);
-    if (validation == false)
-    {
-        Console.WriteLine(" You're a fraud! ");
-
-        Environment.Exit(0);
-    }
-
-    Console.WriteLine(" Proceedings.. to your Pin number ");
-    Console.Write("Enter your Pin: ");
-    string? pin = Console.ReadLine() ?? throw new Exception("Pin number Cannot be null!");
-    if (card.DoCheckPin(pin ?? "123") == false)
-    {
-        Console.WriteLine("Card Pin need to be [4 digits]");
-        Environment.Exit(0);
-    }
-    user = new Users(userCardNumber, long.Parse(pin));
-    Console.WriteLine("***User Card number Successful Inserted!***\n" +
-                      " __________________________________");
-
-
-START:
-    card.ToBank();
-    Console.WriteLine("|\t***Welcome to your Account!***|\n" +
-                      "[1] Deposit \t [2] Withdraw \t [3] Check Balance " +
-                      "\n\t\t [3] logout");
-    int userInput = Convert.ToInt32(Console.ReadLine());
-    if (userInput.Equals(1))
-    {
-        Console.Write("Enter the Amount: $");
-        string? amount = Console.ReadLine() ?? throw new Exception("can't be null");
-        bool success = manageBank.DoDeposit(amount);
-        if (!success)
-        {
-            Console.WriteLine("The deposit must be less than $10,000");
-        }
-        else
-        {
-            Console.WriteLine("Deposit Success!");
-        }
-        goto START;
-    }
-    else if (userInput.Equals(2))
-    {
-        Console.Write("Enter the Amount: $");
-        string? amount = Console.ReadLine() ?? throw new Exception("can't be null");
-        bool success = manageBank.OnWithDraw(amount);
-        if (!success)
-        {
-            Console.WriteLine("The withdraw must be less than $1,000");
-            goto START;
-        }
-        else
-        {
-            Console.WriteLine("Withdraw Success!");
-
-        }
-        goto START;
-    }
-
-
-
+    WriteLine("Valid Credentials [/] \n " +
+              "Proceedings to your Account ...\n\n");
+    Thread.Sleep(3000);
+    manage.ToBank();
+    ManageUser();
 }
 else
 {
-    Console.WriteLine("#(INVALID) key have been press\n" +
-                      "***Operation Exterminated****");
+    WriteLine("Invalid [X] Operation \n System will Exterminate\n");
+    Environment.Exit(0);
+}
+
+
+
+bool DoChecking(string userCardNumberm, string userPinNumber)
+{
+    if (manage.DoCheckPin(userPinNumber) && manage.CheckCard(userCardNumber))
+    {
+        return true;
+    }
+
+    return false;
+}
+
+void ManageUser()
+{
+START:
+    manage.ToBank();
+    Write("\t|^^v Welcome to Simple --|\n");
+    Write("\t--Automated Teller Machine--\n" +
+          "(1) Deposit -- (2) Withdraw -- (3) Log-out\n");
+    int input = Convert.ToInt32(ReadLine());
+    switch (input)
+    {
+        case 1:
+            Write("[DEPOSIT] \n Enter amount of : $ ");
+            string amount = ReadLine() ?? throw new Exception("can't be null");
+            manageBank.DoDeposit(amount);
+            goto START;
+        case 2:
+            Write(" [WITHDRAWING]\n Enter amount of : ");
+            amount = ReadLine() ?? throw new Exception("can't be null");
+            manageBank.OnWithDraw(amount);
+            goto START;
+        case 3:
+            WriteLine("System Concede...");
+            Thread.Sleep(3000);
+            Environment.Exit(0);
+            break;
+    }
+
+
 }

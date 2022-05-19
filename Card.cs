@@ -2,13 +2,15 @@
 {
     internal class Card : BankAccount
     {
-        protected string _CardType { get; set; }
-        protected string _CardNumber { get; set; }
-        protected long _Pin { get; set; }
+        protected string? CardType { get; set; }
+        protected string? CardNumber { get; set; }
+        protected long Pin { get; set; }
         public void ToBank()
         {
-
-            BankOwner(_CardType, _CardNumber.Trim(), _Pin);
+            string _cardType = CardType;
+            string _cardNumber = CardNumber;
+            long _pin = Pin;
+            BankOwner(_cardNumber, _cardType.Trim(), _pin);
 
         }
     }
@@ -26,20 +28,20 @@
 
                 if ((number / 10 == 5) && (0 < number % 10 && number % 10 < 6))
                 {
-                    _CardNumber = cardNumber;
-                    _CardType = "MASTERCARD";
+                    CardNumber = cardNumber;
+                    CardType = "MASTERCARD";
                     return true;
                 }
                 else if ((number / 10 == 3) && (number % 10 == 4 || number % 10 == 7))
                 {
-                    _CardNumber = cardNumber;
-                    _CardType = "AMERICAN CARD";
+                    CardNumber = cardNumber;
+                    CardType = "AMERICAN CARD";
                     return true;
                 }
                 else if (number / 10 == 4)
                 {
-                    _CardNumber = cardNumber;
-                    _CardType = "VISA";
+                    CardNumber = cardNumber;
+                    CardType = "VISA";
                     return true;
                 }
             }
@@ -48,10 +50,10 @@
         }
         public bool IsValid(string cardNumber)
         {
-            cardNumber.Trim();
-            if (13 < cardNumber.Length || 16 > cardNumber.Length)
+            var trim = cardNumber.Trim();
+            if (13 < trim.Length || 16 > trim.Length)
             {
-                if (DoCheckSum(cardNumber) != 0)
+                if (DoCheckSum(trim) != 0)
                 {
                     return false;
                 }
@@ -61,10 +63,10 @@
         }
         public long DoCheckSum(string cardNumber)
         {
-            string card = cardNumber.Trim();
+            string trim = cardNumber.Trim();
             long sum = 0;
             long digit;
-            long number = long.Parse(card);
+            long number = long.Parse(trim);
             for (int i = 0; number != 0; number /= 10)
             {
                 if (i % 2 == 0)
@@ -85,7 +87,7 @@
             {
                 return false;
             }
-            _Pin = long.Parse(pin);
+            this.Pin = long.Parse(pin);
             return true;
         }
 
