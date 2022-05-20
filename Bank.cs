@@ -1,28 +1,29 @@
-﻿using ATM_Software;
+﻿using System;
+using ATM_Software;
 
 namespace ATM_Software
 {
     internal class BankAccount
     {
 
-        protected string _Deposit { get; set; }
-        protected string _Withdraw { get; set; }
-        private string _CardNumber { get; set; }
-
-        private string _CardType { get; set; }
+        protected string? _Deposit { get; set; }
+        protected string? _Withdraw { get; set; }
+        private string? _CardNumber { get; set; }
+        private string? _CardType { get; set; }
         public long _Pin { get; set; }
 
-        public BankAccount(string cardType, string cardNumber, long Pin)
+        public BankAccount(string? cardType, string? cardNumber, long Pin)
         {
-            _CardNumber = cardNumber;
-            _CardType = cardType;
-            _Pin = Pin;
+            this._CardNumber = cardNumber!;
+            this._CardType = cardType!;
+            this._Pin = Pin!;
         }
 
         public BankAccount()
         {
 
         }
+
 
         protected List<BankAccount> Owners = new List<BankAccount>();
 
@@ -31,9 +32,8 @@ namespace ATM_Software
             _CardNumber = cardNumber.Trim();
             _CardType = cardtype;
             _Pin = pin;
-            _Deposit = _Deposit;
             Owners.Add(new BankAccount(_CardType, _CardNumber, _Pin));
-            Console.WriteLine($" Card Number: [{_CardNumber}]\n Card Account: [{_CardType}]\n Card Pin: [{_Pin}]\n" + $" Balance: ${_Deposit}");
+            Console.WriteLine($" Card Number: [{_CardNumber}]\n Card Account: [{_CardType}]\n Card Pin: [{_Pin}]\n");
         }
     }
 
@@ -48,7 +48,6 @@ class ManageBank : BankAccount
         {
             return false;
         }
-
         decimal deposit = Convert.ToDecimal(amount) + Convert.ToDecimal(_Deposit);
         _Deposit = deposit.ToString();
         Console.WriteLine($"$[UPDATE:]---{DateTime.Now}");

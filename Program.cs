@@ -12,10 +12,9 @@ WriteLine("Checking Credentials....");
 Thread.Sleep(3000);
 if (DoChecking(userCardNumber, userPinNumber))
 {
-    WriteLine("Valid Credentials [/] \n " +
-              "Proceedings to your Account ...\n\n");
+    WriteLine("[^^v] -- Valid Credentials [/]\n\n" +
+              "Proceedings to your Account[o_o]\n\n");
     Thread.Sleep(3000);
-    manage.ToBank();
     ManageUser();
 }
 else
@@ -38,7 +37,7 @@ bool DoChecking(string userCardNumberm, string userPinNumber)
 
 void ManageUser()
 {
-START:
+    START:
     manage.ToBank();
     Write("\t|^^v Welcome to Simple --|\n");
     Write("\t--Automated Teller Machine--\n" +
@@ -53,7 +52,7 @@ START:
             goto START;
         case 2:
             Write(" [WITHDRAWING]\n Enter amount of : ");
-            amount = ReadLine() ?? throw new Exception("can't be null");
+            amount = ReadLine() ?? throw new Exception("Can't be null");
             manageBank.OnWithDraw(amount);
             goto START;
         case 3:
@@ -62,6 +61,5 @@ START:
             Environment.Exit(0);
             break;
     }
-
-
+    goto START;
 }

@@ -7,15 +7,22 @@
         protected long Pin { get; set; }
         public void ToBank()
         {
-            string _cardType = CardType;
-            string _cardNumber = CardNumber;
-            long _pin = Pin;
-            BankOwner(_cardNumber, _cardType.Trim(), _pin);
+
+            BankOwner(CardNumber!, CardType!, Pin);
 
         }
     }
     internal class ManageCard : Card
     {
+        public bool DoCheckPin(string pin)
+        {
+            if (pin.Length != 4)
+            {
+                return false;
+            }
+            this.Pin = long.Parse(pin);
+            return true;
+        }
         public bool CheckCard(string cardNumber)
         {
             if (IsValid(cardNumber))
@@ -48,7 +55,7 @@
             return false;
 
         }
-        public bool IsValid(string cardNumber)
+        private bool IsValid(string cardNumber)
         {
             var trim = cardNumber.Trim();
             if (13 < trim.Length || 16 > trim.Length)
@@ -61,7 +68,7 @@
             }
             return false;
         }
-        public long DoCheckSum(string cardNumber)
+        private long DoCheckSum(string cardNumber)
         {
             string trim = cardNumber.Trim();
             long sum = 0;
@@ -80,15 +87,6 @@
                 }
             }
             return sum % 10;
-        }
-        public bool DoCheckPin(string pin)
-        {
-            if (pin.Length != 4)
-            {
-                return false;
-            }
-            this.Pin = long.Parse(pin);
-            return true;
         }
 
     }
